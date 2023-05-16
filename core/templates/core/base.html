@@ -12,7 +12,7 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-light " style="background-color: #15796a;">
+    <nav class="navbar navbar-expand-sm navbar-light" style="background-color: #15796a;">
         <div class="container-fluid">
             <a class="navbar-brand text-white" href="{% url 'core:index' %}">proMambi</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarID"
@@ -24,7 +24,7 @@
                     <a class="nav-link text-white" href="{% url 'worker:new' %}">New member</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Browser</a>
+                    <a class="nav-link text-white" href="{% url 'worker:browser' %}">Browser</a>
                 </li>                
             </ul>
             <div>

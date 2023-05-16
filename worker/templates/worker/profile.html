@@ -92,7 +92,7 @@
               {% if request.user == worker.created_by %} 
                 <div class="col-sm-9 d-flex flex-row ">
                   <p class="text-muted mb-0 pr-3"><strong>This is your worker!</strong></p> 
-                  <a class="btn btn-outline-info btn-sm mr-3" href="#" role="button">edit</a>  
+                  <a class="btn btn-outline-info btn-sm mr-3" href="{% url 'worker:edit' worker.id %}" role="button">edit</a>  
                   <a class="btn btn-outline-danger btn-sm" href="{% url 'worker:delete' worker.id %}" role="button">delete</a> 
                 </div>
               {% else %}
@@ -114,27 +114,22 @@
   
 
   <div class="container-sm mt-5 ">
-    <h4> Others {{ worker.profession }}</h4>
-
-    <div class=" card-group row row-cols-1 row-cols-sm-1 row-cols-md-3 mt-3 g-2">
-        <!-- cria um loop para gerar um card para outros da mesma profissão -->
-        {% for member in related_worker %}        
-        <div class="card mb-3 mr-3" >
-          <div class="row g-0">
-            <div class="col-md-4">
-              <img src="{{ member.image.url }}" class="img-fluid rounded-start" alt="Card imag" style="height:125px; width: 200px;">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">{{ member.name }}</h5>               
-                <a class="btn btn-primary btn-outline-light" 
+    <h4> Others {{ worker.profession }}</h4>   
+    <div class="row row-cols-1 row-cols-md-6 g-4 mt-3">
+      {% for member in related_worker %}       
+      <div class="col">       
+        <div class="card h-100">
+          <img src="{{ member.image.url }}" class="card-img-top" alt="..."  style="height: 150px;">
+          <div class="card-body text-center">
+            <h6 class="card-title">{{ member.name }}</h6>
+            <a class="btn btn-primary btn-outline-light" 
                   style="background-color: #23a3c0;" href="{% url 'worker:profile' member.id %}" 
                   role="button">See Profile</a>
-              </div>
-            </div>
           </div>
-        </div>
-        <!-- finaliza o loop -->
-        {% endfor %}
-    </div>
+        </div>        
+      </div>  
+      {% endfor %} 
+    </div>  
+
+  
 {% endblock %}

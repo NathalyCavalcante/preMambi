@@ -32,3 +32,32 @@ class NewMemberForm(forms.ModelForm):
             }),
         }
 # agora vai criar o view
+
+class EditMemberForm(forms.ModelForm):
+    class Meta:
+        model = Member
+        fields = ('name', 'phone', 'email', 'company', 'image', 'description','profession',)
+        widgets = {
+            'name': forms.TextInput(attrs={
+                'class': INPUT_CLASSES
+            }),
+            'phone': forms.TextInput(attrs={
+                'class': INPUT_CLASSES
+            }),
+            'email': forms.EmailInput(attrs={
+                'class': INPUT_CLASSES
+            }),
+            'company': forms.TextInput(attrs={
+                'class': INPUT_CLASSES
+            }),
+            'image': forms.FileInput(attrs={
+                'class': INPUT_CLASSES
+            }),
+            'description': forms.Textarea(attrs={
+                'class': INPUT_CLASSES
+            }),
+            'profession': forms.Select(attrs={
+                'class': INPUT_CLASSES
+            }),
+        }
+# agora vai criar o view

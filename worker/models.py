@@ -19,6 +19,7 @@ class Member(models.Model):
     image = models.ImageField(upload_to='members_images', blank=True, null=True)
     description = models.TextField(blank=True, null=True)    
     member_since = models.DateTimeField(auto_now_add=True)
+    available = models.BooleanField(default=True) # coloquei apenas para criar um filtro booleano na hora de criar a view do browser
     created_by = models.ForeignKey(User, related_name="members", on_delete=models.CASCADE) # se deleta um usuário deleta as demais informações
     profession = models.ForeignKey(Professions, related_name="members", on_delete=models.CASCADE) # se deleta uma categoria, deleta todos os membros
 
