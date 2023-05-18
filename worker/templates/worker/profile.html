@@ -32,7 +32,7 @@
               <p class="text-muted mb-4">{{ worker.company }}</p>
               <div class="d-flex justify-content-center mb-2">
                 <button type="button" class="btn btn-primary btn-outline-light" style="background-color: #23a3c0;">Follow</button>
-                <button type="button" class="btn btn-outline-secondary ms-1">Message</button>
+                <a class="btn btn-outline-secondary btn-md mr-3" href="{% url 'conversation:new' worker.id %}" role="button">Message</a>                  
               </div>
             </div>
           </div>         
