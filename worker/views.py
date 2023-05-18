@@ -1,22 +1,38 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect # importa o get object
-from .models import Member # importar o model que precisamos das informações
+from .models import Member, Professions # importar o model que precisamos das informações
 from .forms import NewMemberForm, EditMemberForm
+from django.db.models import Q # para poder fazer busca em multiplos campos
 
 # Create your views here.
 
 def browser(request):
     query = request.GET.get('query', '')
-    browser = Member.objects.filter(available=True)
+    professions = Professions.objects.all()
+    profession_id = request.GET.get('professions', 0) # para gerar id
+    # poderia ter posto objects.all() para Member mas só descobri isso depois.
+    browser = Member.objects.filter(available=True) 
 
     if query:
-        browser = browser.filter(name__icontains=query) 
-        
+        # busca só no nome do worker e não tiver o Q (não consegui colocar a profissão por causa da pk)
+        browser = browser.filter(Q(name__icontains=query) | Q(description__icontains=query))
+        if  len(browser) == 0:        
+            return render(request, 'worker/no_results.html')
+    
+    if profession_id:
+        browser = browser.filter(profession_id=profession_id)
 
+    # palavras para contexto para as variaveis funcionarem na template
     return render(request, 'worker/browser.html', {
         'browser': browser,
         'query': query,
+        'professions': professions,
+        'profession_id': int(profession_id)        
     })
+
+def no_results(request):
+    return render(request, 'worker/no_results.html')
+
 
 def profile(request, pk): 
     # primary key que fizemos no model do worker app
@@ -28,7 +44,7 @@ def profile(request, pk):
     return render(request, 'worker/profile.html', { 
         # 'member/profile.html' me manda criar um novo folder 'member' e novo template 'profile' dentro do woeker
         'worker': worker,
-        'related_worker': related_worker
+        'related_worker': related_worker,
     })
 # segue para criação do template e criação da url (cria os arquivos)
 

@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User  # importa o admin registrado pra usar adiante
 # Create your models here.
+
+
 class Professions(models.Model):
     name = models.CharField(max_length=225) 
 

@@ -7,16 +7,33 @@
 
 <div class="container mt-5">
     <form method="get" action="{% url 'worker:browser' %}" class="input-group mb-3">
-            <input type="text" name="query" class="form-control" placeholder="Find a professional..." aria-label="Professional category" aria-describedby="button-addon2" value="{{ query }}">
-            <button class="btn btn-outline-info" type="button" id="button-addon2" >Search</button>
+            <input type="text" name="query" class="form-control" placeholder="Find a professional by name or by description keyword" aria-describedby="button-addon2" value="{{ query }}">
+            <!-- botão SÓ FUNCIONA se colocar o type submit -->
+            <button class="btn btn btn-info" type="submit" id="button-addon2">Search</button>
     </form>            
 </div>
+
+<section>
+    <div class="container text-center mb-5">
+            <small>Or choose by profession:</small>
+            <ul class=" row list-group list-group-horizontal-sm text-center mt-2 ">
+                {% for professions in professions %}
+                <li class=" col list-group-item list-group-item-info  {% if professions.id == profession_id %}list-group-item-light {% endif %}"> 
+                    <a href="{% url 'worker:browser' %}?query={{ query }}&professions={{ professions.id }}"  class="text-decoration-none text-dark">{{ professions.name }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+            <br>
+            <a class="btn btn-outline-info btn-sm" href="{% url 'worker:browser' %}" role="button">clear search</a>
+    </div>
+</section>
 
 
 <div class="album py-5 bg-light">
     <div class="container">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             <!-- cria um loop para gerar um card para cada membro registrado -->
+            <!-- REFERENCIA NO LOOP 'PARA CADA MEMBER NA VIEW BROWSER' -->
             {% for member in browser %}
             <div class="col">
                 <div class="card shadow-sm">
@@ -24,8 +41,7 @@
                     <div class="card-body text-center">
                     <!-- colocar nome -->
                         <h4 class="card-title">{{ member.name }}</h4>
-                        <!-- colocar profissão -->
-                        <!-- <p class="card-text">{{ member.profession }}</p> -->
+                        <!-- colocar profissão -->                       
                         <a href="#" class="text-decoration-none">{{ member.profession }}</a>
                         <!-- colocar onde trabalha -->
                         <p class="card-text">Company: {{ member.company }}</p>                                

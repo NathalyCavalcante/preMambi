@@ -1,0 +1,38 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Browser{% endblock %}
+
+{% block content %}
+
+
+<div class="container mt-5">
+    <form method="get" action="{% url 'worker:browser' %}" class="input-group mb-3">
+            <input type="text" name="query" class="form-control" placeholder="Find a professional by name or description" aria-describedby="button-addon2" value="{{ query }}">
+            <!-- botão SÓ FUNCIONA se colocar o type submit -->
+            <button class="btn btn btn-info" type="submit" id="button-addon2">Search</button>
+    </form>            
+</div>
+
+<section>
+    <div class="container text-center mb-5">
+            <small>filters:</small>
+            <ul class=" row list-group list-group-horizontal-sm text-center mt-2 ">
+                {% for professions in professions %}
+                <li class=" col list-group-item list-group-item-info  {% if professions.id == profession_id %}list-group-item-light {% endif %}"> 
+                    <a href="{% url 'worker:browser' %}?query={{ query }}&professions={{ professions.id }}"  class="text-decoration-none text-dark">{{ professions.name }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+            <br>
+            <a class="btn btn-outline-info btn-sm" href="{% url 'worker:browser' %}" role="button">clear search</a>
+    </div>
+</section>
+
+
+<div class="album py-5 bg-light">
+    <div class="container">
+        <h5 class="text-center text-muted">Sorry, search with no results.</h5>   
+    
+    </div>
+</div>
+{% endblock %}

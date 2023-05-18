@@ -6,6 +6,7 @@ app_name = 'worker'
 
 urlpatterns = [
     path('', views.browser, name='browser'),
+    path('no_results/', views.no_results, name='no_results'),
     path('new/', views.new, name='new'), 
     path('<int:pk>/', views.profile, name='profile'), 
     path('<int:pk>/delete/', views.delete, name='delete'), 
