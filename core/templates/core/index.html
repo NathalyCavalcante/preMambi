@@ -6,58 +6,235 @@
 {% block content %}
 
 <main>
-<section class="py-5 text-center container">
-    <div class="row py-lg-5">
-        <div class="col-lg-6 col-md-8 mx-auto">
-            <h1 class="font-weight-light">Impact Professionals</h1>
-            <p class="lead text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque risus justo, dapibus a imperdiet vitae, vestibulum nec enim.
-                Ut efficitur in nisi at scelerisque.</p>
-            <p>
-            <a href="#" class="btn btn-primary btn-outline-light" style="background-color: #23a3c0;">Main call to action</a>
-            <a href="#" class="btn btn-secondary my-2">Secondary action</a>
-            </p>
+    <section class="bg-dark py-4">
+        <div class="container my-5">
+            <div class="row justify-content-center p-0 p-sm-5">
+                <div class="col-12 col-lg-8 col-xl-6 text-center p-4">
+                    <h1 class="text-white display-5 fw-bolder">Find Impact Professionals in a whole new way</h1>
+                    <p class="lead text-white-50 px-2 mb-4"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque risus justo, dapibus a imperdiet vitae, vestibulum nec enim.
+                Ut efficitur in nisi at scelerisque. </p>
+                    <button type="button" class="btn btn-info btn-lg px-4 m-0 mb-3 mx-sm-3">Get Started</button>
+                    <button type="button" class="btn btn-outline-light btn-lg px-4 m-0 mb-3 mx-sm-3">Learn More</button>                    
+                </div>                
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<div class="album py-5 bg-light">
-    <div class="container">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            <!-- cria um loop para gerar um card para cada membro registrado -->
-            {% for member in member %}
-            <div class="col">
-                <div class="card shadow-sm">
-                    <img class="card-img-top" src="{{ member.image.url }}" alt="Card image" style="height:255px;">
-                    <div class="card-body text-center">
-                    <!-- colocar nome -->
-                        <h4 class="card-title">{{ member.name }}</h4>
-                        <!-- colocar profissão -->
-                        <!-- <p class="card-text">{{ member.profession }}</p> -->
-                        <a href="#" class="text-decoration-none">{{ member.profession }}</a>
-                        <!-- colocar onde trabalha -->
-                        <p class="card-text">Company: {{ member.company }}</p>                                
-                        <div class="d-flex justify-content-center ">
-                            <!-- colocar onde vê perfil detalhado usa-se o NOME DO APP na url  e a ID é gerada pelo django com o Model-->
-                            <a class="btn btn-primary btn-outline-light" style="background-color: #23a3c0;" href="{% url 'worker:profile' member.id %}" role="button">See Profile</a>
-                            <!-- colocar quando entrou -->                       
-                        </div>
+    <section class="bg-light py-4 border-top border-bottom">
+        <div class="container">
+            <div class="text-center">
+            <h2 class="fw-bolder">Our specialists</h2>
+            <p class="lead">click to choose</p>
+            <section class=" text-center container mb-5">
+                <div class="row py-lg-2">
+                    <div class="d-grid gap-2 d-md-block">
+                        {% for professions in professions %}
+                        <a href="{% url 'worker:browser' %}?query={{ query }}&professions={{ professions.id }}" class="btn btn-primary  btn-outline-light"  style="background-color: #23a3c0;">{{ professions.name }}</a>   
+                        {% endfor %}        
                     </div>
                 </div>
-            </div>
-            <!-- finaliza o loop -->
-            {% endfor %}
+            </section> 
         </div>
-        <section class="py-5 text-center container">
-            <div class="row py-lg-5">
-                <div class="d-grid gap-2 d-md-block">
-                    {% for professions in professions %}
-                    <a href="{% url 'worker:browser' %}?query={{ query }}&professions={{ professions.id }}" class="btn btn-primary  btn-outline-light"  style="background-color: #23a3c0;">{{ professions.name }}</a>   
-                    {% endfor %}        
+    
+
+    <section class="bg-white py-4">
+        <div class="container my-5">
+            <div class="row py-5">
+                <div class="col-lg-4 col-sm-12 mb-4">
+                    <div class="d-inline-flex fs-2 p-2 px-3 mb-4 bg-info bg-gradient text-white rounded-3"><i class="bi bi-collection"></i></div>
+                        <h2 class="fw-bold fs-3">Featured title</h2>
+                        <p> Paragraph of text beneath the heading 
+                            to explain the heading. We'll add onto it 
+                            with another sentence and probably just keep 
+                            going until we run out of words.
+                        </p>
+                        <a href="#" class="text-decoration-none ">Call to action <i class="bi bi-arrow-right"></i></a>
+                </div>
+                <div class="col-lg-4 col-sm-12 mb-4">
+                    <div class="d-inline-flex fs-2 p-2 px-3 mb-4 bg-info bg-gradient text-white rounded-3"><i class="bi bi-building"></i></div>
+                        <h2 class="fw-bold fs-3">Featured title</h2>
+                        <p>
+                        Paragraph of text beneath the heading 
+                        to explain the heading. We'll add onto it 
+                        with another sentence and probably just keep 
+                        going until we run out of words.
+                        </p>
+                        <a href="#" class="text-decoration-none ">Call to action <i class="bi bi-arrow-right"></i></a>
+                </div>
+                <div class="col-lg-4 col-sm-12 mb-4">
+                    <div class="d-inline-flex fs-2 p-2 px-3 mb-4 bg-info bg-gradient text-white rounded-3"><i class="bi bi-toggles2"></i></div>
+                        <h2 class="fw-bold fs-3">Featured title</h2>
+                        <p>
+                        Paragraph of text beneath the heading 
+                        to explain the heading. We'll add onto it 
+                        with another sentence and probably just keep 
+                        going until we run out of words.
+                        </p>
+                        <a href="#" class="text-decoration-none">Call to action <i class="bi bi-arrow-right"></i></a>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
+
+    <section class="bg-light py-4 border-top border-bottom">
+        <div class="container my-5">
+            <div class="text-center">
+            <h2 class="fw-bolder">Pay as you grow</h2>
+            <p class="lead">With our no hassle pricing plans</p>
+        </div>
+
+        <div class="row justify-content-center justify-content-xl-start">
+        <div class="col-md-6 col-xl-4">
+            <div class="card mb-5">
+            <div class="card-body p-5">
+                <div class="small text-uppercase text-muted fw-bolder">Free</div>
+                <div class="mb-3">
+                <h2 class="fw-bolder display-4">
+                    $0<small class="fs-5 ms-1 fw-light">/ mo.</small>
+                </h2>
+                </div>
+                <ul class="list-unstyled mb-4">
+                <li class="mb-2">
+                    <i class="bi bi-check text-success"></i>
+                    <span class="fw-bold">1 users</span>
+                </li>
+                <li class="mb-2">
+                    <i class="bi bi-check text-success"></i>
+                    <span>5GB storage</span>
+                </li>
+                <li class="mb-2">
+                    <i class="bi bi-check text-success"></i>
+                    <span>Unlimited public projects</span>
+                </li>
+                <li class="mb-2">
+                    <i class="bi bi-check text-success"></i>
+                    <span>Community access</span>
+                </li>
+                <li class="mb-2 text-muted">
+                    <i class="bi bi-x"></i>
+                    <span>Unlimited private projects</span>
+                </li>
+                <li class="mb-2 text-muted">
+                    <i class="bi bi-x"></i>
+                    <span>Dedicated support</span>
+                </li>
+                <li class="mb-2 text-muted">
+                    <i class="bi bi-x"></i>
+                    <span>Free linked domain</span>
+                </li>
+                <li class="mb-2 text-muted">
+                    <i class="bi bi-x"></i>
+                    <span>Monthly status reports</span>
+                </li>
+                </ul>
+                <button class="btn btn-outline-info w-100">Choose plan</button>
+            </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-xl-4">
+            <div class="card mb-5">
+            <div class="card-body p-5">
+                <div class="small text-uppercase text-dark fw-bolder text-uppercase">
+                <i class="bi bi-star-fill text-warning"></i>
+                Pro
+                </div>
+                <div class="mb-3">
+                <h2 class="fw-bolder display-4">
+                    $9<small class="fs-5 ms-1 fw-light">/ mo.</small>
+                </h2>
+                </div>
+                <ul class="list-unstyled mb-4">
+                <li class="mb-2">
+                    <i class="bi bi-check text-success"></i>
+                    <span class="fw-bold">5 users</span>
+                </li>
+                <li class="mb-2">
+                    <i class="bi bi-check text-success"></i>
+                    <span>5GB storage</span>
+                </li>
+                <li class="mb-2">
+                    <i class="bi bi-check text-success"></i>
+                    <span>Unlimited public projects</span>
+                </li>
+                <li class="mb-2">
+                    <i class="bi bi-check text-success"></i>
+                    <span>Community access</span>
+                </li>
+                <li class="mb-2">
+                    <i class="bi bi-check text-success"></i>
+                    <span>Unlimited private projects</span>
+                </li>
+                <li class="mb-2">
+                    <i class="bi bi-check text-success"></i>
+                    <span>Dedicated support</span>
+                </li>
+                <li class="mb-2">
+                    <i class="bi bi-check text-success"></i>
+                    <span>Free linked domain</span>
+                </li>
+                <li class="mb-2 text-muted">
+                    <i class="bi bi-x"></i>
+                    <span>Monthly status reports</span>
+                </li>
+                </ul>
+                <button class="btn btn-info w-100">Choose plan</button>
+            </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-xl-4">
+            <div class="card mb-5">
+                <div class="card-body p-5">
+                    <div class="small text-uppercase text-secondary fw-bolder text-uppercase">
+                    ENTERPRISE
+                    </div>
+                    <div class="mb-3">
+                    <h2 class="fw-bolder display-4">
+                        $49<small class="fs-5 ms-1 fw-light">/ mo.</small>
+                    </h2>
+                    </div>
+                    <ul class="list-unstyled mb-4">
+                    <li class="mb-2">
+                        <i class="bi bi-check text-success"></i>
+                        <span class="fw-bold">Unlimited users</span>
+                    </li>
+                    <li class="mb-2">
+                        <i class="bi bi-check text-success"></i>
+                        <span>5GB storage</span>
+                    </li>
+                    <li class="mb-2">
+                        <i class="bi bi-check text-success"></i>
+                        <span>Unlimited public projects</span>
+                    </li>
+                    <li class="mb-2">
+                        <i class="bi bi-check text-success"></i>
+                        <span>Community access</span>
+                    </li>
+                    <li class="mb-2">
+                        <i class="bi bi-check text-success"></i>
+                        <span>Unlimited private projects</span>
+                    </li>
+                    <li class="mb-2">
+                        <i class="bi bi-check text-success"></i>
+                        <span>Dedicated support</span>
+                    </li>
+                    <li class="mb-2">
+                        <i class="bi bi-check text-success"></i>
+                        <span><span class="fw-bold">Unlimited</span> linked domains</span>
+                    </li>
+                    <li class="mb-2">
+                        <i class="bi bi-check text-success"></i>
+                        <span>Monthly status reports</span>
+                    </li>
+                    </ul>
+                    <button class="btn btn-outline-info w-100">Choose plan</button>
+                </div>
+            </div>
+        </div>
+       
     </div>
-</div>
+    </section>
 </main>
 
 {% endblock %}
