@@ -30,9 +30,15 @@
               <p class="text-muted mb-1">{{ worker.profession }}</p>
               <!-- aqui vai a empresa do worker -->
               <p class="text-muted mb-4">{{ worker.company }}</p>
-              <div class="d-flex justify-content-center mb-2">
-                <button type="button" class="btn btn-primary btn-outline-light" style="background-color: #23a3c0;">Follow</button>
-                <a class="btn btn-outline-secondary btn-md mr-3" href="{% url 'conversation:new' worker.id %}" role="button">Message</a>                  
+              <div class="d-flex justify-content-center mb-2">               
+                <!-- desabilita botões para seus trabalhadores -->
+                {% if request.user == worker.created_by %} 
+                <!-- <button type="button" class="btn btn-primary btn-outline-light" style="background-color: #23a3c0;" disabled>Follow</button>
+                <a class="btn btn-outline-secondary btn-md mr-3 disabled" tabindex="-1" href="{% url 'conversation:new' worker.id %}" role="button" aria-disabled="true">Message</a>  -->´
+                {% else %}
+                    <button type="button" class="btn btn-primary btn-outline-light" style="background-color: #23a3c0;">Follow</button>
+                    <a class="btn btn-outline-secondary btn-md mr-3" href="{% url 'conversation:new' worker.id %}" role="button">Message</a>                     
+                {% endif %}                    
               </div>
             </div>
           </div>         

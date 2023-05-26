@@ -27,10 +27,11 @@
             <p class="lead">click to choose</p>
             <section class=" text-center container mb-5">
                 <div class="row py-lg-2">
-                    <div class="d-grid gap-2 d-md-block">
+                    <div class="d-grid gap-2 d-md-block">                       
                         {% for professions in professions %}
                         <a href="{% url 'worker:browser' %}?query={{ query }}&professions={{ professions.id }}" class="btn btn-primary  btn-outline-light"  style="background-color: #23a3c0;">{{ professions.name }}</a>   
-                        {% endfor %}        
+                        {% endfor %}
+                        <a href="{% url 'worker:browser' %}" class="btn btn-primary  btn-outline-light"  style="background-color: #115969;">All</a>        
                     </div>
                 </div>
             </section> 

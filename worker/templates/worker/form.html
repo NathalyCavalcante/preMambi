@@ -2,48 +2,72 @@
 <!-- ATENÇÃO!!! SE REFERENCIAR AO APP E NÃO AO MODEL NAS VARIAVEIS  worker.coisa e não member.coisa-->
 
 {% block title %}{{ title }}{% endblock %} {% block content %}
-<section class="h-100 bg-light">
-    <div class="container py-5 h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
+<section style="background-color: #eee;">
+    <div class="container py-5">
+        <div class="row">
             <div class="col">
-                <div class="card card-registration my-4">
-                    <div class="row g-0">
-                        <div class="col-xl-6 d-none d-xl-block">
-                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img4.webp"
-                                alt="Sample photo" class="img-fluid" style="border-top-left-radius: 0.25rem; border-bottom-left-radius: 0.25rem;" />
-                        </div>
-                        <div class="col-xl-6">
-                            <div class="card-body p-md-4 text-black">
-                                <h3 class="mb-2 text-uppercase">{{ title }}</h3>
-                                <!-- o enctupe serve pra fazer o formulário receber arquivos, como imagens -->
-                                <form method="POST" action="." enctype="multipart/form-data">
-                                <!-- token de segurança -->
-                                    {% csrf_token %}
-                                    <div>
-                                        {{ form.as_p }}                                       
+            <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+                <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="{% url 'core:index' %}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">New member</li>
+                </ol>
+            </nav>
+            </div>
+            <section class="h-100 bg-light">
+                <div class="container py-5 h-100">
+                    <div class="row d-flex justify-content-center align-items-center h-100">
+                        <div class="col">
+                            <div class="card card-registration my-4">
+                                <div class="row g-0">
+                                    <div class="col-xl-6 d-none d-xl-block">
+                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img4.webp"
+                                            alt="Sample photo" class="img-fluid" style="border-top-left-radius: 0.25rem; border-bottom-left-radius: 0.25rem;" />
                                     </div>
-                                    
-                                    {% if form.erros or form.non_field_errors %}
-                                    <div class="d-flex flex-row align-items-center mb-4">
-                                        {% for field in form %}
-                                            {{ field.erros }}
-                                        {% endfor %} 
-
-                                        {{ form.non_field_errors }}
+                                    <div class="col-xl-6">
+                                        <div class="card-body p-md-4 text-black">
+                                            <h3 class="mb-2 text-uppercase">{{ title }}</h3>
+                                            <!-- o enctupe serve pra fazer o formulário receber arquivos, como imagens -->
+                                            <form method="POST" action="." enctype="multipart/form-data">
+                                            <!-- token de segurança -->
+                                                {% csrf_token %}
+                                                <div>
+                                                    {{ form.as_p }}                                       
+                                                </div>
+                                                
+                                                {% if form.erros or form.non_field_errors %}
+                                                <div class="d-flex flex-row align-items-center mb-4">
+                                                    {% for field in form %}
+                                                        {{ field.erros }}
+                                                    {% endfor %} 
+            
+                                                    {{ form.non_field_errors }}
+                                                </div>
+                                            {% endif %} 
+                                                <div class="d-flex justify-content-end pt-3">
+                                                    <button type="submit" class="btn btn-info btn-lg ms-2">
+                                                        Submit profile
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
                                     </div>
-                                {% endif %} 
-                                    <div class="d-flex justify-content-end pt-3">
-                                        <button type="submit" class="btn btn-info btn-lg ms-2">
-                                            Submit profile
-                                        </button>
-                                    </div>
-                                </form>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
+
+
+
+
         </div>
     </div>
 </section>
+
+
+
+
+
+
 {% endblock %}

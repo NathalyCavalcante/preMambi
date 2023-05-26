@@ -3,7 +3,48 @@
 {% block title %}New conversation{% endblock %}
 
 {% block content %}
-    <h5> New conversation</h5>
+<section style="background-color: #eee;">
+    <div class="container py-5">
+        <div class="row">
+            <div class="col">
+            <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+                <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="{% url 'core:index' %}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">New conversation</li>
+                </ol>
+            </nav>
+            </div>
+        </div>
+        <form method="POST" action=".">
+            <!-- token de segurança -->
+                {% csrf_token %}
+                <div>
+                    {{ form.as_p }}                                       
+                </div>
+                
+                {% if form.erros or form.non_field_errors %}
+                <div class="d-flex flex-row align-items-center mb-4">
+                    {% for field in form %}
+                        {{ field.erros }}
+                    {% endfor %} 
+    
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %} 
+                <div class="d-flex justify-content-end pt-3">
+                    <button type="submit" class="btn btn-info btn-md ms-2">
+                        send message
+                    </button>
+                </div>
+        </form>
+    </div>
+</section>
+
+
+
+
+
+
 {% endblock %}
 
 

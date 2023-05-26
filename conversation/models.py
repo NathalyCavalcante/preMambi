@@ -27,7 +27,7 @@ class ConversationMessage(models.Model):
     # conteúdo das mensagens
     content = models.TextField()
     # quando a mensagem foi criada
-    created_at = models.DateTimeField()
+    created_at = models.DateTimeField(auto_now_add=True)
     # quem criou a mensagem - deletada se deletar o usuário
     created_by = models.ForeignKey(User, related_name='created_messages', on_delete=models.CASCADE)
 

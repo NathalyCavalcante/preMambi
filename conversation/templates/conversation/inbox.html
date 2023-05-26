@@ -1,0 +1,38 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Inbox{% endblock %}
+
+{% block content %}
+<section style="background-color: #eee;">
+    <div class="container py-5">
+        <div class="row">
+            <div class="col">
+            <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+                <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="{% url 'core:index' %}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Inbox</li>
+                </ol>
+            </nav>
+            </div>
+        </div>       
+            {% for conversation in conversations %}                
+                <div class="card w-25">
+                    <img src="{{ conversation.worker.image.url }}" class="card-img-top" alt="member image" />
+                    <div class="card-body text-center">
+                        {% for member in conversation.members.all %}
+                            {% if member != request.user %}
+                            <h5 class="card-title">{{ conversation.worker.name }}</h5>
+                            <p class="card-text"><small class="text-body-secondary">Created by: {{ member.username }}</small></p>
+                            <a href="{% url 'conversation:detail' conversation.id %}" class="btn btn-info">See conversation</a>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %} 
+    </div>
+</section>
+{% endblock %}
+
+
+
+
