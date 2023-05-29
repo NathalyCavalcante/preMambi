@@ -15,6 +15,7 @@ class LoginForm(AuthenticationForm):
     }))
 # não vou precisar de um view para isso pois o django vai fornecer
 
+
 class SignupForm(UserCreationForm):
     class Meta:
         model = User

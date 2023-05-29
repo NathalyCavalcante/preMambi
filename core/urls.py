@@ -17,5 +17,6 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name='core/login.html', authentication_form=LoginForm), name='login'), 
     # diferente pq quem vai gerar esse login é o próprio django (e aviso a ele o nome da template)
     # depois desse passo, o django cria uma url de /accounts/profile/ e precisa ir nos settings arrumar
+    path('logoff/', views.logoff, name='logoff'), 
 
 ]

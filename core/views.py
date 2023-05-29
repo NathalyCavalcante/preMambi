@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from worker.models import Professions, Member # importa do app worker os modelos para serem exibidos, renderizados
 from .forms import SignupForm # importa o form de login que criamos
+from django.contrib.auth import logout
 
 # página inicial
 def index(request):
@@ -29,6 +30,10 @@ def signup(request):
         form = SignupForm()
 
     return render(request, 'core/signup.html', {
-        'form': form 
+        'form': form,
+        
     })
 
+def logoff(request):
+    logout(request)
+    return redirect('/login/')

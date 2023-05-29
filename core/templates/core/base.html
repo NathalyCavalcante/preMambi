@@ -33,6 +33,7 @@
                 {% if request.user.is_authenticated %}
                 <a class="btn btn-info mr-2" href="{% url 'conversation:inbox' %}" role="button">Inbox</a>
                 <a class="btn btn-secondary" href="{% url 'dashboard:index' %}" role="button">Dashboard</a>
+                <a class="btn btn-secondary" href="{% url 'core:logoff' %}" role="button">Logout</a>
                 {% else %}
                 <a class="btn btn-info mr-2" href="{% url 'core:signup' %}" role="button">Sign up</a>
                 <a class="btn btn-secondary" href="{% url 'core:login' %}" role="button">Login</a>

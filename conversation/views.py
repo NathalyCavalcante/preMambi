@@ -19,7 +19,8 @@ def new_conversation(request, worker_pk):
 
     # checar se já teve conversa entre o usuário e o worker e o redirecionar para esta conversa
     if conversations:
-        pass # redireciona para a conversa
+        # redireciona para a conversa (CÓDIGO FEITO LÁ NA FRENTE EM DEF DETAIL)
+        return redirect('conversation:detail', pk=conversations.first().id)
 
     # checar se a mensagem escrita no form foi enviada no método POST
     if request.method == 'POST':
@@ -64,8 +65,26 @@ def inbox(request):
 def detail(request, pk):
     conversation = ConversationArea.objects.filter(members__in=[request.user.id]).get(pk=pk)
 
+    # depois que faz o form de mensagem/send no html, faz a view dele aqui nesse IF
+    if request.method == 'POST':
+        form = ConversationMessageForm(request.POST)
+
+        if form.is_valid():
+            conversation_message = form.save(commit=False)
+            conversation_message.conversation = conversation
+            conversation_message.created_by = request.user
+            conversation_message.save()
+
+            conversation.save()
+            # SEM O HTML!!
+            return redirect('conversation:detail', pk=pk)
+    else:
+        form = ConversationMessageForm()
+
+    # adiciona o form ao dicionário
     return render(request, 'conversation/detail.html', {
-        'conversation': conversation
+        'form': form,
+        'conversation': conversation,
     })
 
 
